@@ -74,7 +74,11 @@ if (isset($_POST["mordred"])) {
 	
 	$msg = "You are Mordred. Spies are ";
 	
-	foreach ($spy as $playerID) {
+	$spyIterator = new ArrayIterator($spy);
+	$spyShuffled = $spyIterator->getArrayCopy();
+	shuffle($spyShuffled);
+	
+	foreach ($spyShuffled as $playerID) {
 		if ($playerID != $mordred) {
 			if (!isset($_POST["oberon"]) || $playerID != $oberon) {
 				$msg .= $playerInfo["$playerID"]["name"] . ", ";
@@ -102,7 +106,12 @@ if (isset($_POST["merlin"])) {
 	$spyIndex++;
 
 	$msg = "You are the Assassin. Spies are ";
-	foreach ($spy as $playerID) {
+	
+	$spyIterator = new ArrayIterator($spy);
+	$spyShuffled = $spyIterator->getArrayCopy();
+	shuffle($spyShuffled);
+	
+	foreach ($spyShuffled as $playerID) {
 		if ($playerID != $assassin) {
 			if (!isset($_POST["oberon"]) || $playerID != $oberon) {
 				$msg .= $playerInfo["$playerID"]["name"] . ", ";
@@ -120,7 +129,11 @@ if (isset($_POST["morgana"])) {
 	
 	$msg = "You are Morgana. Spies are ";
 	
-	foreach ($spy as $playerID) {
+	$spyIterator = new ArrayIterator($spy);
+	$spyShuffled = $spyIterator->getArrayCopy();
+	shuffle($spyShuffled);
+	
+	foreach ($spyShuffled as $playerID) {
 		if ($playerID != $morgana) {
 			if (!isset($_POST["oberon"]) || $playerID != $oberon) {
 				$msg .= $playerInfo["$playerID"]["name"] . ", ";
@@ -144,9 +157,15 @@ if (isset($_POST["percival"])) {
 
 while ($spyIndex < count($spy)) {
 	$msg = "You are a Spy. Spies are ";
-	foreach ($spy as $playerID) {
-		$spyID = $spy[$spyIndex];
-		if ($playerID != $spyID) {
+	
+	$spyID = $spy[$spyIndex];
+	
+	$spyIterator = new ArrayIterator($spy);
+	$spyShuffled = $spyIterator->getArrayCopy();
+	shuffle($spyShuffled);
+	
+	foreach ($spyShuffled as $playerID) {
+		if ($playerID != $spyID && $spyID != $assassin) {
 			if (!isset($_POST["oberon"]) || $playerID != $oberon) {
 				$msg .= $playerInfo["$playerID"]["name"] . ", ";
 			}
