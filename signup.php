@@ -12,7 +12,6 @@ if ($password != $password2)
 }
 
 $hashedpassword = hash("sha256", $username . $password);
-$hashedpassword2 = hash("sha256", $username . $password2);
 
 $dbConn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$dbConn) {
